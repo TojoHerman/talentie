@@ -90,13 +90,9 @@ DATABASES = {
         "HOST": os.environ.get("PGHOST"),
         "PORT": os.environ.get("PGPORT", "5432"),
         "CONN_MAX_AGE": 60,
-<<<<<<< HEAD
-        "OPTIONS": { "sslmode": "require" },
-=======
-        "OPTIONS": {
+                "OPTIONS": {
             "sslmode": "require",
             "hostaddr": os.environ.get("PGHOSTADDR"),  # ⬅️ forces IPv4 connect
->>>>>>> 3e6220f (Fix DB connection: force IPv4 hostaddr for Supabase)
     }
 }
 }
