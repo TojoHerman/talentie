@@ -88,20 +88,12 @@ DATABASES = {
         "USER": os.environ.get("PGUSER"),
         "PASSWORD": os.environ.get("PGPASSWORD"),
         "HOST": os.environ.get("PGHOST"),
-        "PORT": os.environ.get("PGPORT", "6543"),   # pooler port
-        "CONN_MAX_AGE": 0,                          # play nice with pgbouncer
-        "OPTIONS": {
-            "sslmode": "require",
-            "connect_timeout": 5,
-            # leave out "hostaddr" for now
-        },
+        "PORT": os.environ.get("PGPORT", "6543"),
+        "CONN_MAX_AGE": 0,  # pgbouncer transaction mode
+        "OPTIONS": {"sslmode": "require", "connect_timeout": 5},
     }
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 101915a (Switch to direct Supabase connection (5432) with SSL)
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
