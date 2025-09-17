@@ -93,10 +93,15 @@ DATABASES = {
         "OPTIONS": {
             "sslmode": "require",
             "connect_timeout": 5,
+            # leave out "hostaddr" for now
         },
     }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 101915a (Switch to direct Supabase connection (5432) with SSL)
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
