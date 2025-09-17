@@ -12,16 +12,20 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load .env from the project root (same folder as manage.py)
+load_dotenv(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY", "change-me")
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-only-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
@@ -42,16 +46,16 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",   # ⬅️ must be first
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
 
 ROOT_URLCONF = 'config.urls'
 
@@ -78,7 +82,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # DATABASE (Supabase Postgres via env vars)
 DATABASES = {
-    'default': {
+    "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.environ.get("PGDATABASE", "postgres"),
         "USER": os.environ.get("PGUSER"),
@@ -86,8 +90,15 @@ DATABASES = {
         "HOST": os.environ.get("PGHOST"),
         "PORT": os.environ.get("PGPORT", "5432"),
         "CONN_MAX_AGE": 60,
+<<<<<<< HEAD
         "OPTIONS": { "sslmode": "require" },
+=======
+        "OPTIONS": {
+            "sslmode": "require",
+            "hostaddr": os.environ.get("PGHOSTADDR"),  # ⬅️ forces IPv4 connect
+>>>>>>> 3e6220f (Fix DB connection: force IPv4 hostaddr for Supabase)
     }
+}
 }
 
 
