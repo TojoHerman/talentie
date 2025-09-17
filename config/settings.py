@@ -86,6 +86,7 @@ DATABASES = {
         "HOST": os.environ.get("PGHOST"),
         "PORT": os.environ.get("PGPORT", "5432"),
         "CONN_MAX_AGE": 60,
+        "OPTIONS": { "sslmode": "require" },
     }
 }
 
