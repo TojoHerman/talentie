@@ -33,8 +33,6 @@ router.register("booking", BookingViewSet, basename="booking")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/health/", health),
-    path("api/", include(router.urls)),
     path("api/", include("api.urls")),
     path("healthz/", healthz),   # <— NEW
 ]
