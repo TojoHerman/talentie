@@ -88,14 +88,23 @@ DATABASES = {
         "USER": os.environ.get("PGUSER"),
         "PASSWORD": os.environ.get("PGPASSWORD"),
         "HOST": os.environ.get("PGHOST"),
+<<<<<<< HEAD
         "PORT": os.environ.get("PGPORT", "5432"),
         "CONN_MAX_AGE": 60,
                 "OPTIONS": {
             "sslmode": "require",
             "hostaddr": os.environ.get("PGHOSTADDR"),  # ⬅️ forces IPv4 connect
+=======
+        "PORT": os.environ.get("PGPORT", "6543"),   # pooler port
+        "CONN_MAX_AGE": 0,                          # play nice with pgbouncer
+        "OPTIONS": {
+            "sslmode": "require",
+            "connect_timeout": 5,
+        },
+>>>>>>> 64b76cb (Use Supabase transaction pooler (6543) and SSL)
     }
 }
-}
+
 
 
 # Password validation
