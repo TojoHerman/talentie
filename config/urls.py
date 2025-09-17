@@ -18,6 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from api.views import *
+from django.http import JsonResponse
+
+def healthz(_req):
+    return JsonResponse({"ok": True})
 
 router = DefaultRouter()
 router.register("profile", ProfileViewSet, basename="profile")
@@ -31,4 +35,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/health/", health),
     path("api/", include(router.urls)),
+    path("api/", include("api.urls")),
+    path("healthz/", healthz),   # <— NEW
 ]
